@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     if (userDataString) {
       const userData = JSON.parse(userDataString);
-      const { jwt, exp } = userData;
+      const { exp } = userData;
 
       if (exp && exp * 1000 < Date.now()) {
         logout();

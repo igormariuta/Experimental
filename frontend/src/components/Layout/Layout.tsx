@@ -1,4 +1,5 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode, useContext, useEffect } from "react";
+import { BoxArrowRight, Gear } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -9,20 +10,24 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   const { user, logout } = useContext(UserContext);
 
+  useEffect(() => {
+    console.log("layout " + user);
+  }, [user]);
+
   return (
     <>
-      <div className="container mx-auto">
-        <nav className="flex justify-between bg-gray-200 p-3">
+      <nav className="bg-zinc-600">
+        <div className="container mx-auto flex justify-between p-3">
           <div className="flex ">
             <Link
               to="/"
-              className="mr-3 bg-gray-300 px-3 py-1  text-gray-600 hover:text-gray-800"
+              className="mr-3 bg-gray-500 px-3 py-1 rounded text-white"
             >
               Home
             </Link>
             <Link
               to="/about"
-              className="mr-6 bg-gray-300 px-3 py-1  text-gray-600 hover:text-gray-800"
+              className="mr-6 bg-gray-500 px-3 py-1 rounded text-white"
             >
               About
             </Link>
@@ -30,29 +35,41 @@ const Layout = ({ children }: LayoutProps) => {
 
           {user ? (
             <div className="flex items-center">
-              <span className="mr-3 mb-0">{user.name}</span>
+              <span className="mr-3 mb-0 text-white">{user.username}</span>
+              <Link
+                to="/profile"
+                className="mr-3 bg-gray-500 p-2 rounded text-white"
+              >
+                <Gear />
+              </Link>
               <button
                 onClick={logout}
-                className="bg-gray-300 px-3 py-1 text-gray-600 hover:text-gray-800"
+                className="bg-gray-500 p-2 rounded text-white"
               >
-                Log out
+                <BoxArrowRight />
               </button>
             </div>
           ) : (
-            <Link
-              to="/login"
-              className="bg-gray-300 px-3 py-1 text-gray-600 hover:text-gray-800"
-            >
-              Login
-            </Link>
+            <div className="flex items-center">
+              <Link
+                to="/login"
+                className="mr-3 bg-gray-500 rounded px-3 py-1 text-white"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="bg-gray-500 rounded px-3 py-1 text-white"
+              >
+                Register
+              </Link>
+            </div>
           )}
-        </nav>
+        </div>
+      </nav>
 
-        <main className="p-6 text-gray-800">{children}</main>
-
-        <footer className="bg-gray-600 text-white p-3">
-          <p className="text-sm">&copy; Blog. All rights reserved.</p>
-        </footer>
+      <div className="container mx-auto">
+        <main className="p-3 py-6 text-gray-800">{children}</main>
       </div>
     </>
   );
