@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect } from "react";
+import { ReactNode, useContext } from "react";
 import { BoxArrowRight, Gear } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
@@ -10,9 +10,9 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   const { user, logout } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log("layout " + user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("layout " + user);
+  // }, [user]);
 
   return (
     <>
