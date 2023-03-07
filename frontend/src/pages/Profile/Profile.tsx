@@ -49,7 +49,11 @@ const Profile = () => {
     // updateUser({ ...user, ...data });
   };
 
-  return <ProfileForm onSubmit={onSubmit} defaultValues={data} />;
+  return data ? (
+    <ProfileForm onSubmit={onSubmit} defaultValues={data} />
+  ) : (
+    <p>Loading</p>
+  );
 };
 
 export default Profile;

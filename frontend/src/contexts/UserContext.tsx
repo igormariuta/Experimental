@@ -3,7 +3,7 @@ import {
   createContext,
   ReactNode,
   useCallback,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from "react";
@@ -40,7 +40,7 @@ export const getTokenExpiration = (token: string) => {
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<userData | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const userDataString = localStorage.getItem("userData");
 
     if (userDataString) {

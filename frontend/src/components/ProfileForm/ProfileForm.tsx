@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -13,6 +14,10 @@ type ProfileFormProps = {
 };
 
 const ProfileForm = ({ onSubmit, defaultValues }: ProfileFormProps) => {
+  useEffect(() => {
+    console.log("values: " + defaultValues);
+  }, [defaultValues]);
+
   const { register, handleSubmit, formState } = useForm<FormData>({
     defaultValues,
   });

@@ -17,7 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <nav className="bg-zinc-600">
-        <div className="container mx-auto flex justify-between p-3">
+        <div className="max-w-4xl mx-auto flex justify-between p-3">
           <div className="flex ">
             <Link
               to="/"
@@ -68,7 +68,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       </nav>
 
-      <div className="container mx-auto">
+      <div className="max-w-4xl mx-auto">
         <main className="p-3 py-6 text-gray-800">{children}</main>
       </div>
     </>
